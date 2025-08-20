@@ -8,7 +8,7 @@
                     <i class="fas fa-lock text-3xl text-white"></i>
                 </div>
                 <h2 class="text-2xl font-bold text-gray-900 mt-4">
-                    SISTEM INFORMASI AKADEMIK
+                    WANARA LINK - Login
                 </h2>
                 <p class="mt-2 text-center text-sm text-gray-600">
                     Masukkan kredensial Anda untuk melanjutkan
@@ -63,6 +63,16 @@
                     </button>
                 </div>
             </form>
+
+            {{-- Link ke Register --}}
+            <div class="text-center">
+                <p class="text-sm text-gray-600">
+                    Belum punya akun?
+                    <a href="{{ route('register') }}" class="font-medium text-indigo-600 hover:text-indigo-500">
+                        Daftar di sini
+                    </a>
+                </p>
+            </div>
         </div>
     </div>
 </div>
