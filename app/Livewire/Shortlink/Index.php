@@ -12,7 +12,7 @@ class Index extends Component
     public $search = '';
 
     protected $rules = [
-        'original_url' => 'required|url',
+        'original_url' => 'required',
         'alias' => 'required|string|unique:shortlinks,alias|min:3|max:50',
     ];
 
@@ -29,9 +29,12 @@ class Index extends Component
     {
         $validated = $this->validate();
 
+        // ubah spasi jadi strip
+        $alias = str_replace(' ', '-', $validated['alias']);
+        
         ShortLink::create([
             'original_url' => $validated['original_url'],
-            'alias' => $validated['alias'],
+            'alias' => $alias,
         ]);
 
         // reset form

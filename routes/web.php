@@ -6,12 +6,14 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\Login;
 use App\Livewire\Auth\Register;
 use App\Livewire\Dashboard\Index;
+use App\Livewire\Home\Index as HomeIndex;
 use App\Livewire\Shortlink\Index as ShortlinkIndex;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+Route::get('/', HomeIndex::class)->name('home');
 
 Route::get('/register', Register::class)->name('register');
 Route::get('/login', Login::class)->name('login');

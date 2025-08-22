@@ -16,8 +16,8 @@
 <body class="bg-slate-100 text-gray-800">
     <div class="flex min-h-screen">
         <!-- Sidebar -->
-        <aside id="sidebar"
-            class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 transform -translate-x-full md:translate-x-0 md:relative md:flex md:flex-col">
+        <aside id="sidebar" class="fixed w-64 bg-white shadow-lg z-50 
+           transform -translate-x-full md:translate-x-0 md:relative md:flex md:flex-col overflow-hidden">
             <div class="flex items-center justify-center h-20 bg-indigo-600 shadow-md">
                 <span class="text-xl font-extrabold text-white logo-text">Wanara Link</span>
             </div>
@@ -54,7 +54,8 @@
         <!-- Main Content Area -->
         <div id="main-content" class="flex-1 flex flex-col">
             <!-- Navbar -->
-            <header class="flex items-center justify-between h-20 bg-white shadow-md px-6 z-40">
+            <header
+                class="flex items-center justify-between h-20 bg-white shadow-md px-6 z-40 fixed top-0 left-0 right-0">
                 <div class="flex items-center">
                     <button id="sidebar-toggle" class="text-gray-500 focus:outline-none focus:text-gray-700 md:hidden">
                         <i class="fas fa-bars text-xl"></i>
@@ -100,13 +101,13 @@
             </header>
 
             <!-- Content Area -->
-            <main class="flex-1 p-6 bg-slate-100">
+            <main class="flex-1 p-6 bg-slate-100 pt-24">
                 {{ $slot }}
             </main>
 
             <!-- Footer -->
             <footer class="bg-white text-center p-4 text-sm text-gray-500">
-                &copy; 2025 SIAKAD by Wanara Digital. Hak Cipta Dilindungi.
+                &copy; 2025 WanaLink by Wanara Digital. Hak Cipta Dilindungi.
             </footer>
         </div>
     </div>
