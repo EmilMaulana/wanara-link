@@ -3,7 +3,7 @@
 namespace App\Livewire\Shortlink;
 
 use Livewire\Component;
-use App\Models\ShortLink;
+use App\Models\ShortLink as ModelShortLink;
 
 class Index extends Component
 {
@@ -32,7 +32,7 @@ class Index extends Component
         // ubah spasi jadi strip
         $alias = str_replace(' ', '-', $validated['alias']);
         
-        ShortLink::create([
+        ModelShortLink::create([
             'original_url' => $validated['original_url'],
             'alias' => $alias,
         ]);
@@ -47,7 +47,7 @@ class Index extends Component
 
     public function delete($id)
     {
-        $link = ShortLink::find($id);
+        $link = ModelShortLink::find($id);
 
         if ($link) {
             $link->delete();
@@ -63,7 +63,7 @@ class Index extends Component
 
     public function render()
     {
-        $shortlinks = ShortLink::query()
+        $shortlinks = ModelShortLink::query()
             ->when($this->search, function ($query) {
                 $query->where('alias', 'like', '%' . $this->search . '%')
                       ->orWhere('original_url', 'like', '%' . $this->search . '%');
