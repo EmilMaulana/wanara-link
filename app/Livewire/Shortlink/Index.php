@@ -4,6 +4,7 @@ namespace App\Livewire\Shortlink;
 
 use Livewire\Component;
 use App\Models\Shortlink as ModelShortLink;
+use Illuminate\Support\Facades\Auth; // Tambahkan ini
 
 class Index extends Component
 {
@@ -35,6 +36,7 @@ class Index extends Component
         ModelShortLink::create([
             'original_url' => $validated['original_url'],
             'alias' => $alias,
+            'user_id' => auth()->id(), // Tambahkan ini
         ]);
 
         // reset form
@@ -47,23 +49,24 @@ class Index extends Component
 
     public function delete($id)
     {
-        $link = ModelShortLink::find($id);
+        $link = ModelShortLink::where('id', $id)
+            ->where('user_id', auth()->id()) // Tambahkan ini
+            ->first();
 
         if ($link) {
             $link->delete();
             session()->flash('successMessage', 'Shortlink berhasil dihapus!');
             return redirect()->route('shortlink.index');
-
         } else {
-            session()->flash('errorMessage', 'Shortlink tidak ditemukan.');
+            session()->flash('errorMessage', 'Shortlink tidak ditemukan atau Anda tidak memiliki izin.');
             return redirect()->route('shortlink.index');
-
         }
     }
 
     public function render()
     {
         $shortlinks = ModelShortLink::query()
+            ->where('user_id', auth()->id()) // Tambahkan ini
             ->when($this->search, function ($query) {
                 $query->where('alias', 'like', '%' . $this->search . '%')
                       ->orWhere('original_url', 'like', '%' . $this->search . '%');
