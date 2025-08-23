@@ -3,7 +3,7 @@
 namespace App\Livewire\Shortlink;
 
 use Livewire\Component;
-use App\Models\ShortLink as ModelShortLink;
+use App\Models\Shortlink as ModelShortLink;
 
 class Index extends Component
 {
